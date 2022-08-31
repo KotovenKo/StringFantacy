@@ -3,10 +3,6 @@ package com.kot;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-/**
- * Hello world!
- *
- */
 public class App {
     public static void main( String[] args )    {
 
@@ -24,16 +20,13 @@ public class App {
         System.out.println(resultCustom.equals(result));
         System.out.println(resultStream.equals(result));
         System.out.println(resultOptimal.equals(result));
-
-
-
     }
 
-    public static String reverseWordsOptimal(String string){
+    public static String reverseWordsOptimal(String string) {
         StringBuilder mainBuilder = new StringBuilder();
         StringBuilder builder = new StringBuilder();
-        for(char c: string.toCharArray()){
-            if (Character.isLetter(c)){
+        for (char c : string.toCharArray()) {
+            if (Character.isLetter(c)) {
                 builder.insert(0, c);
             } else {
                 mainBuilder.append(builder).append(c);
@@ -43,12 +36,10 @@ public class App {
         return mainBuilder.append(builder).toString();
     }
 
-    public static String customReverse(String s) {
+    public static String customReverse(String string) {
         StringBuilder result = new StringBuilder();
-        for (String word : s.split(" ")) {
-
+        for (String word : string.split(" ")) {
             StringBuilder temp = new StringBuilder(word.replaceAll("[\\W\\d+]", "")).reverse();
-
             for (int i = 0; i < word.length(); i++) {
                 if (!Character.isLetter(word.charAt(i))) {
                     temp.insert(i, word.charAt(i));
@@ -59,12 +50,12 @@ public class App {
         return result.toString().trim();
     }
 
-    public  static String reverseWordsStream(String sentence) {
-        String[] words = sentence.split(" ");
+    public static String reverseWordsStream(String string) {
+        String[] words = string.split(" ");
         return Arrays.stream(words).map(App::reverseWord).collect(Collectors.joining(" "));
     }
 
-    private  static String reverseWord(String word) {
+    private static String reverseWord(String word) {
         String noPunctuation = word.replaceAll("\\W", "");
         String reversed = new StringBuilder(noPunctuation).reverse().toString();
         StringBuilder result = new StringBuilder();
@@ -81,6 +72,7 @@ public class App {
     }
 
 }
+
 interface StringReverse {
     /**
      * Преобразует строку:
